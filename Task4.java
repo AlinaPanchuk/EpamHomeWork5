@@ -5,39 +5,57 @@ import java.util.Scanner;
 
 public class Task4 {
     public static void main(String[] args) {
+
         int size = getSize();
         int[] array = getArray(size);
         outputArray(array);
 
-        int j = 0, k = 0;
+        int[] arrayPlus = new int[getArraPlusLength(array)];
+        int[] arrayMinus = new int[getArrayMinusLength(array)];
 
+        getArrayPlus(array, arrayPlus);
+        outputArray(arrayPlus);
+
+        getArrayMinus(array, arrayMinus);
+        outputArray(arrayMinus);
+    }
+
+    private static int getArrayMinusLength(int[] array) {
+        int k = 0;
         for (int i = 0; i < array.length; i++) {
-            if (array[i] > 0) {
-                j++;
-            } else {
+            if (array[i] < 0) {
                 k++;
             }
         }
-        int[] arrayPlus = new int[j];
-        int[] arrayMinus = new int[k];
+        return k;
+    }
 
-
-        for (int i = 0, a = 0; i < array.length; i++) {
+    private static int getArraPlusLength(int[] array) {
+        int j = 0;
+        for (int i = 0; i < array.length; i++) {
             if (array[i] > 0) {
-                arrayPlus[a] = array[i];
-                a++;
+                j++;
             }
         }
-        outputArray(arrayPlus);
+        return j;
+    }
 
-
+    private static void getArrayMinus(int[] array, int[] arrayMinus) {
         for (int i = 0, b = 0; i < array.length; i++) {
             if (array[i] < 0) {
                 arrayMinus[b] = array[i];
                 b++;
             }
         }
-        outputArray(arrayMinus);
+    }
+
+    private static void getArrayPlus(int[] array, int[] arrayPlus) {
+        for (int i = 0, a = 0; i < array.length; i++) {
+            if (array[i] > 0) {
+                arrayPlus[a] = array[i];
+                a++;
+            }
+        }
     }
 
     private static int getSize() {
